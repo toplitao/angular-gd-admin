@@ -1,0 +1,84 @@
+.header{
+    height: 64px;
+    padding: 16px 32px;
+    //background-color: #3f51b5;
+    box-shadow: 0 0 4px #CCCCCC;
+    position: relative;
+    z-index: 100;
+    .header-title{
+        line-height: 32px;
+    }
+    .user-info{
+        line-height: 32px;
+    }
+    .bell{
+        -moz-animation: ringing 2.0s 5 ease 1.0s;
+        -webkit-animation: ringing 2.0s 5 ease 1.0s;
+        -ms-animation: ringing 2.0s 5 ease 1.0s;
+        animation: ringing 2.0s 5 ease 1.0s;
+        -moz-transform-origin: 50% 0%;
+        -webkit-transform-origin: 50% 0%;
+        -ms-transform-origin: 50% 0%;
+        transform-origin: 50% 0%;
+        cursor: pointer;
+        color: #db3632;
+        animation-iteration-count:infinite;
+    }
+    @keyframes ringing{
+        0% {
+            transform: rotate(-15deg);
+        }
+        2% {
+            transform: rotate(15deg);
+        }
+        4% {
+            transform: rotate(-18deg);
+        }
+        6% {
+            transform: rotate(18deg);
+        }
+        8% {
+            transform: rotate(-22deg);
+        }
+        10% {
+            transform: rotate(22deg);
+        }
+        12% {
+            transform: rotate(-18deg);
+        }
+        14% {
+            transform: rotate(18deg);
+        }
+        16% {
+            transform: rotate(-12deg);
+        }
+        18% {
+            transform: rotate(12deg);
+        }
+        20% {
+            transform: rotate(0deg);
+        }
+    }
+    .bell-menu{
+        width: 100%;
+        height: 30px;
+        line-height: 18px;
+        border-bottom: 1px solid #e8e8e8;
+        border-radius: 4px;
+        padding-left: 6px;
+        text-align: left;
+        &:hover{
+            background: #46b8da;
+        }
+    }
+    .circle{
+        width:18px;
+        height:18px;
+        background-color:#f89406;
+        border-radius:9px;
+        color: whitesmoke;
+        text-align: center;
+        font-size: 12px;
+    }
+
+}

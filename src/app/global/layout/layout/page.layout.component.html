@@ -1,0 +1,15 @@
+<div class="box layout-col">
+    <header-component (menu)="move($event)"></header-component>
+    <div class="layout-row" [ngClass]="{'menu-on':state, 'menu-off': !state}">
+        <div class="menu">
+            <div>
+                <p-panelMenu [model]="items"></p-panelMenu>
+            </div>
+        </div>
+        <div class="content layout-box-auto">
+            <div><tab-menu></tab-menu></div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <!--<footer-component class="layout-end"></footer-component>-->
+</div>

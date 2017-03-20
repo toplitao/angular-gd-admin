@@ -1,0 +1,35 @@
+.box {
+    height: 100%;
+    position: relative;
+}
+
+.layout-row {
+    height: calc(100% - 64px);
+    font-size: 0;
+    position: relative;
+    .menu {
+        height: 100%;
+        display: inline-block;
+        font-size: 16px;
+        vertical-align: top;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #ffffff;
+        box-shadow: 4px 0 8px #EEEEEE;
+        position: relative;
+        z-index: 100;
+        transition: width 240ms ease-out;
+        & > div {
+            width: 200px;
+        }
+    }
+    .content {
+        height: 100%;
+        display: inline-block;
+        font-size: 14px;
+        vertical-align: top;
+        overflow: auto;
+        padding: 8px;
+        transition: width 240ms ease-out;
+    }
+}

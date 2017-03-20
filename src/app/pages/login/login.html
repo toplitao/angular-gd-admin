@@ -1,0 +1,9 @@
+<div class="container center">
+    <div class="content">
+        <label for="mobile">手机</label>
+        <input id="mobile" type="text" pInputText [(ngModel)]="username">
+        <label for="password">密码</label>
+        <input id="password" type="password" pInputText pPassword [(ngModel)]="password">
+        <button type="button" pButton (click)="auth.login(username, password)" label="登陆"></button>
+    </div>
+</div>

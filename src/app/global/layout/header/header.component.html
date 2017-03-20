@@ -1,0 +1,11 @@
+<div class="header">
+  <h2 class="fl header-title">管理端</h2>
+  <button pButton="" class="ui-button ui-button-info" type="button" (click)="move()" label="menu"></button>
+  <div *ngIf="user.id" class="fr user-info">
+    <span>用户名：{{user.username}}</span>
+    <span (click)="loginOut()">退出</span>
+  </div>
+  <div *ngIf="!user.id" class="fr user-info">
+    <a [routerLink]="'/login'">登陆</a>
+  </div>
+</div>

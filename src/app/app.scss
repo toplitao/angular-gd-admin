@@ -1,0 +1,113 @@
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.4em;
+    color: #303030;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/******定位*******/
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.lt {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.lb {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.rt {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.rb {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.center {
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+/******自适应*******/
+@media screen and (max-width: 1024px) {
+    .layout-row {
+        .content {
+            width: 100%;
+        }
+        .menu {
+            position: absolute !important;
+            left: 0;
+            bottom: 0;
+        }
+    }
+    .menu-off{
+        & > .menu {
+            width: 200px;
+        }
+    }
+    .menu-on {
+        & > .menu {
+            width: 0;
+        }
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .menu-on{
+        & > .menu {
+            width: 200px;
+        }
+        & > .content {
+            width: calc(100% - 200px);
+        }
+    }
+    .menu-off {
+        & > .menu {
+            width: 0;
+        }
+        & > .content {
+            width: 100%;
+        }
+    }
+}
+/*********primeng***********/
+@import "../assets/css/primeng";
+
+body > script + div[style]{
+    display: none !important;
+}
+
+@import "../assets/sass/global";
