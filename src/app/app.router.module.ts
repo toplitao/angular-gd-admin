@@ -16,6 +16,8 @@ import {
     DefaultComponent,
     LoginComponent,
 
+    UserModule,
+    UserRoutes,
     // InfoModule,
     // InfoModuleRoutes
 
@@ -34,6 +36,7 @@ export const AppComponents: any[] = [
 // 用于统一导出整个项目的Module到 module
 export const AppModules: any[] = [
     LayoutModule,
+    UserModule,
 
 ];
 // 用于统一导出整个项目的Service到 module
@@ -54,6 +57,7 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
         children: [
             { path: '', component: DefaultComponent },
+            { path: 'member', children: UserRoutes },
             //{ path: 'basicinfo', children: InfoModuleRoutes },
 
         ]
@@ -62,9 +66,11 @@ const routes: Routes = [
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes, { useHash: true }), 
+    UserModule
     //InfoModule,
     ],
     exports: [RouterModule, 
+    UserModule
     //InfoModule
     ]
 })
