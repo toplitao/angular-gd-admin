@@ -3,7 +3,6 @@ import { Http, Response, URLSearchParams, Headers, Jsonp } from '@angular/http';
 import { Observable } from 'rxjs';
 import { ODataCollectionView } from 'wijmo/wijmo.odata';
 // var ODataCollectionView = require('../odata.js').ODataCollectionView;
-import { ODataCollectionViewEx } from '../odata';
 
 import { AuthHandler } from '../handlers/auth.handler';
 import { Config } from '../../config';
@@ -37,23 +36,6 @@ export class Api {
         return this.http.post(api_url, body, { headers: this.makeHeaders() })
             .map(this.extractData)
             .catch((error) => this.handleError(error));
-    }
-
-    public odata(path: string, options: any = {}, params = {}, method = 'GET'): ODataCollectionViewEx {
-        var opt: any = {};
-        let defaultOptions = { pageSize: 10 };
-        Object.assign(opt, defaultOptions);
-        Object.assign(opt, options);
-
-        let header = {};
-        header['Accept'] = 'application/json';
-        if (this.authHandler.hasToken()) {
-            header['authorization'] = this.authHandler.getAuthorization();
-        }
-        opt.requestHeaders = header;
-        console.log('Odata Http>>>', Config.baseUrl + this.makeUrl(path, params));
-        return new ODataCollectionViewEx(Config.baseUrl, path, opt, params, method);
-        // return new ODataCollectionView(Config.baseUrl, this.makeUrl(path, params), opt);
     }
 
     private makeUrl(baseUrl: string, params = {}) {
