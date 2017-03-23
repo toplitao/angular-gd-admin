@@ -9,6 +9,7 @@ import {
     Api,
 
     UserService,
+    MemberService,
 } from './providers';
 
 // 导入页面组件或模块
@@ -46,6 +47,7 @@ export const AppServices: any[] = [
     AuthHandler,
     AuthGuard,
     UserService,
+    MemberService,
     // {provide: RouteReuseStrategy, useClass: CustomReuseStrategy},
 ];
 // ===============================================================
@@ -57,7 +59,7 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
         children: [
             { path: '', component: DefaultComponent },
-            { path: 'member', children: UserRoutes },
+            { path: 'user', children: UserRoutes },
             //{ path: 'basicinfo', children: InfoModuleRoutes },
 
         ]

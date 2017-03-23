@@ -5,11 +5,11 @@ import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
 import {MemberService}from '../../../providers/services/member.service';
 @Component({
     selector:'member',
-    styleUrls: ['member.component.scss'],
-    templateUrl: 'member.component.html',
+    styleUrls: ['repairer.component.scss'],
+    templateUrl: 'repairer.component.html',
      providers: [ConfirmationService]
 })
-export class MemberComponent implements OnInit{
+export class RepairerComponent implements OnInit{
        public Show:any=[
            {'dialog':false,'tableshow':true,'cshow':false,'addshow':false,'updateshow':false}
            ]

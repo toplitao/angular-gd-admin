@@ -14,8 +14,8 @@ export class Menu {
                 label: '用户',
                 icon: 'fa-star',
                 items: [
-                    { label: '会员管理', icon: 'fa-star-o', routerLink: 'user/member' },
-                    { label: '维修员管理', icon: 'fa-star-o', routerLink: 'repairer' }
+                    { label: '会员管理', icon: 'fa-star-o', routerLink: ['user/member' ]},
+                    { label: '维修员管理', icon: 'fa-star-o', routerLink: ['user/repairer'] }
                 ]
             },
             {
