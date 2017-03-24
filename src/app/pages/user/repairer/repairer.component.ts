@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
 import {MemberService}from '../../../providers/services/member.service';
 @Component({
-    selector:'member',
+    selector:'repairer',
     styleUrls: ['repairer.component.scss'],
     templateUrl: 'repairer.component.html',
      providers: [ConfirmationService]
@@ -19,17 +19,25 @@ export class RepairerComponent implements OnInit{
        public userDetail:any=[];
        private userInfo:any=[];
        private selected:any;
-       private search:any={id:null,name:null};
+       private search:any={id:null,username:null};
        
-       constructor(private memberservice:MemberService,private confirmationService: ConfirmationService){
+       constructor(private repairerservice:MemberService,private confirmationService: ConfirmationService){
        }
 
       async ngOnInit(){
            this.Show.tableshow=true;
-           this.userInfo=await this.memberservice.memberlist();
+           this.userList();
        }
       async userList(){
-           this.userInfo=await this.memberservice.memberlist();
+           this.userInfo=await this.repairerservice.repairerlist();
+           this.userInfo.forEach(e=>{
+               if(e.status==1){
+                   e._status="空闲";
+               }else{
+                   e._status="忙碌";
+               }
+           });
+           console.log('111',this.userInfo);
        }
        detail(msg){ console.log('msg',msg);
            this.userDetail=msg;
@@ -42,7 +50,7 @@ export class RepairerComponent implements OnInit{
            this.Show.addShow=false;
        }
        async updatepost(){
-            let msg=await this.memberservice.memberupdate(this.userDetail);
+            let msg=await this.repairerservice.repairerupdate(this.userDetail);
             if(msg.status==1){
                 this.userInfo=msg.data;
                 this.Show.cshow=false;
@@ -55,7 +63,7 @@ export class RepairerComponent implements OnInit{
        }
       async add(postdata?:any){
            if(postdata){
-               let msg=await this.memberservice.memberadd(this.userDetail);
+               let msg=await this.repairerservice.repaireradd(this.userDetail);
                if(msg.status==1){
                    this.userInfo=msg.data;
                    let msgs={severity:'info', summary:'提示', detail:'添加成功'};
@@ -68,7 +76,7 @@ export class RepairerComponent implements OnInit{
            }else{
                 this.userDetail={
                     id:null,
-                    name:null,
+                    username:null,
                     address:null,
                     phone:null,
                     email:null,
@@ -82,7 +90,7 @@ export class RepairerComponent implements OnInit{
        }
        async del(data){
             let params={id:data.id};
-            let msg=await this.memberservice.memberdel(params);
+            let msg=await this.repairerservice.repairerdel(params);
        }
       msg(msg){
         //    this.confirmationService.confirm({
@@ -102,7 +110,7 @@ export class RepairerComponent implements OnInit{
           });
           str=str.substring(0,str.length-1);
           let params={ids:str};
-          let msg=await this.memberservice.memberdel(params);
+          let msg=await this.repairerservice.repairerdel(params);
           if(msg.status==1){
               this.userInfo=msg.data;
           }
@@ -110,7 +118,7 @@ export class RepairerComponent implements OnInit{
       }
      async onsearch(){
          
-          let ret=await this.memberservice.membersearch(this.search); console.log('1',this.search);
+          let ret=await this.repairerservice.repairersearch(this.search); console.log('1',this.search);
           this.userInfo=ret;
       }
 } 

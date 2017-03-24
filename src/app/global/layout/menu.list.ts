@@ -22,14 +22,15 @@ export class Menu {
                 label: '维修单',
                 icon: 'fa-star',
                 items: [
-                    { label: '维修单管理', icon: 'fa-star-o', routerLink: 'member' },
+                    { label: '维修单管理', icon: 'fa-star-o', routerLink: ['order/list'] },
+                    { label: '物流', icon: 'fa-star-o', routerLink: ['order/logictics'] },
                 ]
             },
             {
                 label: '配件',
                 icon: 'fa-star',
                 items: [
-                    { label: '配件管理', icon: 'fa-star-o', routerLink: 'member' },
+                    { label: '配件管理', icon: 'fa-star-o', routerLink: ['fitting/list'] },
                 ]
             },
             {

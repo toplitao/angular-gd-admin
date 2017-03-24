@@ -10,6 +10,8 @@ import {
 
     UserService,
     MemberService,
+    OrderService,
+    FittingService,
 } from './providers';
 
 // 导入页面组件或模块
@@ -19,6 +21,12 @@ import {
 
     UserModule,
     UserRoutes,
+
+    OrderModule,
+    OrderRoutes,
+
+    FittingModule,
+    FittingRoutes
     // InfoModule,
     // InfoModuleRoutes
 
@@ -38,6 +46,8 @@ export const AppComponents: any[] = [
 export const AppModules: any[] = [
     LayoutModule,
     UserModule,
+    OrderModule,
+    FittingModule,
 
 ];
 // 用于统一导出整个项目的Service到 module
@@ -48,6 +58,8 @@ export const AppServices: any[] = [
     AuthGuard,
     UserService,
     MemberService,
+    OrderService,
+    FittingService,
     // {provide: RouteReuseStrategy, useClass: CustomReuseStrategy},
 ];
 // ===============================================================
@@ -60,6 +72,8 @@ const routes: Routes = [
         children: [
             { path: '', component: DefaultComponent },
             { path: 'user', children: UserRoutes },
+            { path: 'order', children: OrderRoutes },
+            { path: 'fitting', children: FittingRoutes },
             //{ path: 'basicinfo', children: InfoModuleRoutes },
 
         ]
@@ -68,11 +82,15 @@ const routes: Routes = [
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes, { useHash: true }), 
-    UserModule
+    UserModule,
+    OrderModule,
+    FittingModule,
     //InfoModule,
     ],
     exports: [RouterModule, 
-    UserModule
+    UserModule,
+    OrderModule,
+    FittingModule,
     //InfoModule
     ]
 })

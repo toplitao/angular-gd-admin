@@ -10,6 +10,13 @@ export class MemberService {
         memberupdate:'user/member/update',
         memberdel:'user/member/del',
         membersearch:'user/member/search',
+
+
+        repairerlist: 'user/repairer',
+        repaireradd:'user/repairer/add',
+        repairerupdate:'user/repairer/update',
+        repairerdel:'user/repairer/del',
+        repairersearch:'user/repairer/search',
     };
 
     constructor(private api: Api) {
@@ -30,5 +37,22 @@ export class MemberService {
     }
     public membersearch(params){
         return this.api.get(this.apis.membersearch,params).toPromise();
+    }
+
+
+    public repairerlist(){
+        return this.api.get(this.apis.repairerlist).toPromise();
+    }
+    public repaireradd(params){
+        return this.api.post(this.apis.repaireradd,params).toPromise();
+    }
+    public repairerupdate(params){
+        return this.api.post(this.apis.repairerupdate,params).toPromise();
+    }
+    public repairerdel(params){
+         return this.api.get(this.apis.repairerdel,params).toPromise();
+    }
+    public repairersearch(params){
+        return this.api.get(this.apis.repairersearch,params).toPromise();
     }
 }
