@@ -27,19 +27,19 @@
         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
         <input #gb type="text" pInputText size="50" placeholder="任意字段查询">
     </div>
-    <p-dataTable *ngIf="Show.tableshow" [(selection)]="selected" [value]="userInfo" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
-        <p-header>会员列表</p-header>
-        <p-header>
+    <p-dataTable *ngIf="Show.tableshow"  [value]="userInfo" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt [pageLinks]="3"  [responsive]="true" [rowsPerPageOptions]="[5,10,20]">
+        <p-header>订单列表</p-header>
+        <!--<p-header>
             <div class="ui-helper-clearfix">
                 <button type="button" pButton icon="fa-file-o" iconPos="left" label="CSV" (click)="dt.exportCSV(selected)" style="float:left"></button>
             </div>
-        </p-header>
-        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
-        <p-column field="id" header="订单号"></p-column>
+        </p-header>-->
+        <!--<p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>-->
+        <p-column field="id" [sortable]="true" header="订单号"></p-column>
         <p-column field="customer_name" header="申请人"></p-column>
         <p-column field="goods_type" header="维修产品"></p-column>
          <p-column field="tel_number" header="联系方式"></p-column>
-        <p-column field="buy_time" header="申请时间"></p-column>
+        <p-column field="buy_time" [sortable]="true" header="申请时间"></p-column>
         <p-column field="repairer_name" header="维修员"></p-column>
         <p-column field="_status" header="状态"></p-column>
         <p-column styleClass="col-button">

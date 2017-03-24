@@ -13,6 +13,7 @@ import {
     GoodsService,
     OrderService,
     FittingService,
+    InformationService,
 } from './providers';
 
 // 导入页面组件或模块
@@ -28,7 +29,10 @@ import {
     OrderRoutes,
 
     FittingModule,
-    FittingRoutes
+    FittingRoutes,
+
+    InformationModule,
+    InformationRoutes,
     // InfoModule,
     // InfoModuleRoutes
 
@@ -51,6 +55,7 @@ export const AppModules: any[] = [
     UserModule,
     OrderModule,
     FittingModule,
+    InformationModule,
 
 ];
 // 用于统一导出整个项目的Service到 module
@@ -64,6 +69,7 @@ export const AppServices: any[] = [
     GoodsService,
     OrderService,
     FittingService,
+    InformationService,
     // {provide: RouteReuseStrategy, useClass: CustomReuseStrategy},
 ];
 // ===============================================================
@@ -79,6 +85,7 @@ const routes: Routes = [
             { path: 'goods', component: GoodsComponent },
             { path: 'order', children: OrderRoutes },
             { path: 'fitting', children: FittingRoutes },
+            { path: 'information', children: InformationRoutes },
             //{ path: 'basicinfo', children: InfoModuleRoutes },
 
         ]
@@ -90,12 +97,15 @@ const routes: Routes = [
     UserModule,
     OrderModule,
     FittingModule,
+    InformationModule,
     //InfoModule,
     ],
     exports: [RouterModule, 
     UserModule,
     OrderModule,
     FittingModule,
+    InformationModule,
+
     //InfoModule
     ]
 })

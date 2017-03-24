@@ -28,13 +28,13 @@
         <input #gb type="text" pInputText size="50" placeholder="任意字段查询">
     </div>
     <p-dataTable *ngIf="Show.tableshow" [(selection)]="selected" [value]="userInfo" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
-        <p-header>会员列表</p-header>
+        <p-header>站点列表</p-header>
         <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
-        <p-column field="id" header="会员id"></p-column>
-        <p-column field="name" header="会员名"></p-column>
-        <p-column field="phone" header="电话"></p-column>
-        <p-column field="email" header="e-mail"></p-column>
-        <p-column field="created_at" header="注册时间"></p-column>
+        <p-column field="id" header="站点编号"></p-column>
+        <p-column field="station_name" header="站点名"></p-column>
+        <p-column field="station_charger" header="负责人"></p-column>
+        <p-column field="phone" header="负责人电话"></p-column>
+        <p-column field="created_at" header="建站时间"></p-column>
         <!--<p-column header="操作">
             <template let-detail="rowData" pTemplate="body">
             <button type="button" pButton  label="修改"></button>
@@ -46,10 +46,10 @@
         <template pTemplate="header">
             <button type="button" pButton icon="fa-refresh" (click)="userList()"></button>
         </template>
-        <template let-member="rowData" pTemplate="body">
-           <button type="button" pButton (click)="update(member)"  label="修改"></button>
-            <button type="button" pButton (click)="del(member)"  label="删除"></button>
-            <button type="button" pButton (click)="detail(member)" label="详细"></button>
+        <template let-station="rowData" pTemplate="body">
+           <button type="button" pButton (click)="update(station)"  label="修改"></button>
+            <button type="button" pButton (click)="del(station)"  label="删除"></button>
+            <button type="button" pButton (click)="detail(station)" label="详细"></button>
         </template>
     </p-column>
     </p-dataTable>

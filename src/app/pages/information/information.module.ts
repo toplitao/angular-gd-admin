@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ExternalModule } from '../../external.module';
-import { MemberComponent} from './member/member.component';
+import { StationComponent} from './station/station.component';
 import { RepairerComponent} from './repairer/repairer.component';
 import { RouterModule, Routes, RouteReuseStrategy } from '@angular/router';
 //import { PartnerGoodsSelectionComponent } from './partner-goods-selection/partner.goods.selection';
 @NgModule({
     imports: [ExternalModule],
     declarations: [
-       MemberComponent,
+       StationComponent,
        RepairerComponent
     ],
     exports: [
@@ -16,11 +16,11 @@ import { RouterModule, Routes, RouteReuseStrategy } from '@angular/router';
     ]
 
 })
-export class UserModule {
+export class InformationModule {
      
 }
-export const UserRoutes :Routes =[
-    {path:'member',component:MemberComponent},
+export const InformationRoutes :Routes =[
+    {path:'station',component:StationComponent},
     {path:'repairer',component:RepairerComponent},
 
 ]

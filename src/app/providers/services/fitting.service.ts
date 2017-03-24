@@ -10,6 +10,7 @@ export class FittingService {
         orderupdate:'fitting/list/update',
         orderdel:'fitting/list/del',
         ordersearch:'fitting/list/search',
+        fittinglog:'fitting/list/fittinglog',
 
 
         // repairerlist: 'user/repairer',
@@ -37,5 +38,8 @@ export class FittingService {
     }
     public fittingsearch(params){
         return this.api.get(this.apis.ordersearch,params).toPromise();
+    }
+    public fittinglog(params){
+         return this.api.get(this.apis.fittinglog,params).toPromise();
     }
 }

@@ -16,7 +16,8 @@ export class ListComponent implements OnInit{
        public listType=[
            {label:"列表1",value:true},{label:"列表2",value:false}];
        public msgs:any=[];
-       public userDetail:any=[];
+       public fittinglogDetail:any=[];
+       public fittingDetail:any=[];
        private userInfo:any=[];
        private selected:any;
        private search:any={id:null,name:null};
@@ -26,23 +27,19 @@ export class ListComponent implements OnInit{
 
       async ngOnInit(){
            this.Show.tableshow=true;
-           this.userInfo=await this.fittingservice.fittinglist();
+           this.userList();
        }
       async userList(){
            this.userInfo=await this.fittingservice.fittinglist();
        }
-       detail(msg){ console.log('msg',msg);
-           this.userDetail=msg;
-           this.Show.dialog=true;
-       }
        update(msg){
-           this.userDetail=msg
-           this.Show.cshow=true
+           this.fittingDetail=msg;
+           this.Show.cshow=true;
            this.Show.updateshow=true;
            this.Show.addShow=false;
        }
        async updatepost(){
-            let msg=await this.fittingservice.fittingupdate(this.userDetail);
+            let msg=await this.fittingservice.fittingupdate(this.fittingDetail);
             if(msg.status==1){
                 this.userInfo=msg.data;
                 this.Show.cshow=false;
@@ -55,7 +52,7 @@ export class ListComponent implements OnInit{
        }
       async add(postdata?:any){
            if(postdata){
-               let msg=await this.fittingservice.fittingadd(this.userDetail);
+               let msg=await this.fittingservice.fittingadd(this.fittingDetail);
                if(msg.status==1){
                    this.userInfo=msg.data;
                    let msgs={severity:'info', summary:'提示', detail:'添加成功'};
@@ -64,14 +61,15 @@ export class ListComponent implements OnInit{
                    let msgs={severity:'error', summary:'提示', detail:'添加失败'};
                    this.msg(msgs);
                }
+               console.log('data',msg);
                this.Show.cshow=false;
            }else{
-                this.userDetail={
+                this.fittingDetail={
                     id:null,
-                    name:null,
-                    address:null,
-                    phone:null,
-                    email:null,
+                    fittings_name:null,
+                    number:null,
+                    price:null,
+                    content:null,
                 };
                 this.Show.cshow=true
                 this.Show.addshow=true;
@@ -112,5 +110,22 @@ export class ListComponent implements OnInit{
          
           let ret=await this.fittingservice.fittingsearch(this.search); console.log('1',this.search);
           this.userInfo=ret;
+      }
+      async fittinglog(fitting){
+          let params={id:fitting.id};
+          let ret=await this.fittingservice.fittinglog(params);
+          this.fittinglogDetail=ret.data;
+          if(this.fittinglogDetail){
+            this.fittinglogDetail.forEach(e=>{
+                if(e.type==1){
+                    e._type="存";
+                }else if(e.type==-1){
+                    e._type="取";
+                }else{
+                    e._type="";
+                }
+            });
+           }
+          this.Show.dialog=true;
       }
 } 
