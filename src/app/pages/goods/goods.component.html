@@ -64,7 +64,7 @@
                 <button type="button" pButton icon="fa-refresh" (click)="userList()"></button>
             </template>
             <template let-goods="rowData" pTemplate="body">
-            <button type="button" pButton (click)="update(goods)"  label="修改"></button>
+                <button type="button" pButton (click)="update(goods)"  label="修改"></button>
                 <button type="button" pButton (click)="del(goods)"  label="删除"></button>
                 <button type="button" pButton (click)="detail(goods)" label="详细"></button>
             </template>
@@ -73,18 +73,39 @@
     <p-dialog header="详情" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" (onAfterHide)="onDialogHide()">
         <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="selectedGood" style="font-size:16px;text-align:center;padding:20px">
             <div *ngIf="showType==1" >
-                <img [src]="pic" *ngFor="let pic of selectedGood?.picture" (click)="selectedPic=pic;selectedPicShow=true;" style="width: 100px;height: 100px;">   
+                <div *ngFor="let pic of selectedGood?.picture" style="float: left;width: 100px;height: 100px;">
+                    <img [src]="pic" (click)="selectedPic=pic;selectedPicShow=true;" style="width: 100px;height: 100px;">   
+                    <div class="yuan" style="position: absolute" (click)="delete(pic,selectedGood.id)"><i class="fa fa-minus"></i></div>
+                </div><br>
                 <p-growl [value]="lmsgs"></p-growl>
-                <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-upload?id='+selectedGood?.id+'&dir=goods/picture'" (onUpload)="onUpload($event)" 
-                  (onSelect)="asd($event)"   multiple="multiple" accept="image/*" maxFileSize="1000000">
+                <div style="width: 100%;float: left">
+                <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-upload?id='+selectedGood?.id+'&dir=goods/picture&table=Goods&filed=picture'" (onUpload)="onUpload($event)" 
+                   multiple="multiple" accept="image/*" maxFileSize="1000000">
                     <template pTemplate type="content">
                         <ul *ngIf="uploadedFiles.length">
                             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
                         </ul>
                     </template>        
                 </p-fileUpload>
+                </div>
             </div>
-            <a [href]="selectedGood.doc" *ngIf="showType==2">{{selectedGood.doc}}</a>
+            <div *ngIf="showType==2">
+                <div *ngFor="let doc of selectedGood?.doc">
+                    <a style="display: block;float: left" [href]="doc">{{doc}}</a>
+                    <div class="yuan" style="float: left" (click)="delete(doc,selectedGood.id)"><i class="fa fa-minus"></i></div>
+                </div>
+                <p-growl [value]="lmsgs"></p-growl>
+                <div style="width: 100%;float: left">
+                    <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-upload?id='+selectedGood?.id+'&dir=goods/doc&table=Goods&filed=doc'" (onUpload)="onUpload($event)" 
+                    multiple="multiple" accept="image/*" maxFileSize="1000000">
+                        <template pTemplate type="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                            </ul>
+                        </template>        
+                    </p-fileUpload>
+                </div>
+            </div>
         </div>
     </p-dialog>
 </div>

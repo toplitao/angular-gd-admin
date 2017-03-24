@@ -2,7 +2,7 @@ import {Component,OnInit,OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
-import {GoodsService}from '../../providers/services/goods.service';
+import {GoodsService,FilesService}from '../../providers/services';
 @Component({
     selector:'goods',
     styleUrls: ['goods.component.scss'],
@@ -21,7 +21,8 @@ export class GoodsComponent implements OnInit{
        private selected:any;
        private search:any={id:null,name:null};
        
-       constructor(private goodsservice:GoodsService,private confirmationService: ConfirmationService){
+       constructor(private goodsservice:GoodsService,private confirmationService: ConfirmationService,
+       private filesService:FilesService){
        }
 
       async ngOnInit(){
@@ -120,8 +121,8 @@ export class GoodsComponent implements OnInit{
     displayDialog: boolean;
 
     
-    selectedGoods(good,showType) {
-        console.log(good);
+    async selectedGoods(good,showType) {
+        this.userInfo=await this.goodsservice.goodsList();
         this.selectedGood = good;
         this.showType=showType;
         this.displayDialog = true;
@@ -136,22 +137,27 @@ export class GoodsComponent implements OnInit{
     uploadedFiles: any[] = [];
 
     onUpload(event) {
+        console.log(event.xhr);
         for(let file of event.files) {
             this.uploadedFiles.push(file);
         }
-    
+        let ret=eval('(' + event.xhr.response + ')')
+        this.selectedGood=ret;
+        console.log(this.selectedGood);
         this.lmsgs = [];
-        this.lmsgs.push({severity: 'info', summary: 'File Uploaded', detail: ''});
+        this.lmsgs.push({severity: '信息', summary: '上传成功', detail: ''});
     }
-    asd(e){
-        console.log(e);
+    async delete(path,id){
+        let ret=await this.filesService.delete({path:path,id:id,table:'Goods',filed:'doc'});
+        if(ret.id){
+            this.selectedGood=ret;
+        }
     }
     images: any[];
 
     selectedPic:any;
     selectedPicShow:boolean=false;
     open(e){
-        console.log(e);
         this.selectedPicShow=e;
     }
 } 

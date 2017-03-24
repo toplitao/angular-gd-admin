@@ -6,3 +6,4 @@ export * from './goods.service';
 export * from './order.service';
 export * from './fitting.service';
 export * from './information.service';
+export * from './files.service';
