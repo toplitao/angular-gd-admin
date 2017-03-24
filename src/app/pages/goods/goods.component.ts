@@ -146,4 +146,12 @@ export class GoodsComponent implements OnInit{
     asd(e){
         console.log(e);
     }
+    images: any[];
+
+    selectedPic:any;
+    selectedPicShow:boolean=false;
+    open(e){
+        console.log(e);
+        this.selectedPicShow=e;
+    }
 } 

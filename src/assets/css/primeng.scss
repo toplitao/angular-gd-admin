@@ -66,3 +66,19 @@
   width: 38px;
   text-align: center;
 }
+.pls{
+    div{
+        a{
+            img{
+                width: 100px;
+                height: 100px;
+            }
+        }
+    }
+}
+.ui-widget-overlay{
+    img{
+        opacity: 0;
+        background: red;
+    }
+}

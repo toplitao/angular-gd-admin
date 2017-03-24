@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ExternalModule } from '../../external.module';
-//import { PartnerGoodsSelectionComponent } from './partner-goods-selection/partner.goods.selection';
+import { Zippy } from './zippy/zippy';
 @NgModule({
     imports: [ExternalModule],
     declarations: [
-        //PurchaseSaleListComponent,
+        Zippy,
     ],
     exports: [
-        //PurchaseSaleListComponent,
+        Zippy,
     ]
 
 })

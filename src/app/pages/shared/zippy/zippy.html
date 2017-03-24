@@ -1,0 +1,10 @@
+<div class="zippy">
+    <div id="zippy" class="popup"  *ngIf="isShow" (click)="click($event)">
+        <div *ngIf="!loader" class="content">
+            <ng-content></ng-content>
+        </div>
+        <div *ngIf="loader" class="content">
+
+        </div>
+    </div>
+</div>

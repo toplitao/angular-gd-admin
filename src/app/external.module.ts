@@ -30,7 +30,8 @@ import {
     TabMenuModule,
     MenuItem,
     ToolbarModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    LightboxModule
 } from 'primeng/primeng';
 import { TreeModule } from 'angular-tree-component';//angular-tree-component
 
@@ -69,7 +70,8 @@ let importAndExportModules = [
     TabMenuModule,
     ToolbarModule,
     ToggleButtonModule,
-    TreeModule
+    TreeModule,
+    LightboxModule
 ]
 
 @NgModule({
