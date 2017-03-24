@@ -10,12 +10,14 @@ import {
 
     UserService,
     MemberService,
+    GoodsService,
 } from './providers';
 
 // 导入页面组件或模块
 import {
     DefaultComponent,
     LoginComponent,
+    GoodsComponent,
 
     UserModule,
     UserRoutes,
@@ -32,6 +34,7 @@ import { LayoutModule } from './global/layout/layout.module';
 export const AppComponents: any[] = [
     DefaultComponent,
     LoginComponent,
+    GoodsComponent,
     //PurchaseComponent,
 ];
 // 用于统一导出整个项目的Module到 module
@@ -48,6 +51,7 @@ export const AppServices: any[] = [
     AuthGuard,
     UserService,
     MemberService,
+    GoodsService
     // {provide: RouteReuseStrategy, useClass: CustomReuseStrategy},
 ];
 // ===============================================================
@@ -60,6 +64,7 @@ const routes: Routes = [
         children: [
             { path: '', component: DefaultComponent },
             { path: 'user', children: UserRoutes },
+            { path: 'goods', component: GoodsComponent },
             //{ path: 'basicinfo', children: InfoModuleRoutes },
 
         ]
