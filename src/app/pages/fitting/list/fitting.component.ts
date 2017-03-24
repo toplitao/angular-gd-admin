@@ -2,14 +2,14 @@ import {Component,OnInit,OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
-import {MemberService}from '../../../providers/services/member.service';
+import {FittingService}from '../../../providers/services/fitting.service';
 @Component({
-    selector:'member',
-    styleUrls: ['member.component.scss'],
-    templateUrl: 'member.component.html',
+    selector:'fitting',
+    styleUrls: ['fitting.component.scss'],
+    templateUrl: 'fitting.component.html',
      providers: [ConfirmationService]
 })
-export class MemberComponent implements OnInit{
+export class ListComponent implements OnInit{
        public Show:any=[
            {'dialog':false,'tableshow':true,'cshow':false,'addshow':false,'updateshow':false}
            ]
@@ -21,15 +21,15 @@ export class MemberComponent implements OnInit{
        private selected:any;
        private search:any={id:null,name:null};
        
-       constructor(private memberservice:MemberService,private confirmationService: ConfirmationService){
+       constructor(private fittingservice:FittingService,private confirmationService: ConfirmationService){
        }
 
       async ngOnInit(){
            this.Show.tableshow=true;
-           this.userInfo=await this.memberservice.memberlist();
+           this.userInfo=await this.fittingservice.fittinglist();
        }
       async userList(){
-           this.userInfo=await this.memberservice.memberlist();
+           this.userInfo=await this.fittingservice.fittinglist();
        }
        detail(msg){ console.log('msg',msg);
            this.userDetail=msg;
@@ -42,7 +42,7 @@ export class MemberComponent implements OnInit{
            this.Show.addShow=false;
        }
        async updatepost(){
-            let msg=await this.memberservice.memberupdate(this.userDetail);
+            let msg=await this.fittingservice.fittingupdate(this.userDetail);
             if(msg.status==1){
                 this.userInfo=msg.data;
                 this.Show.cshow=false;
@@ -55,7 +55,7 @@ export class MemberComponent implements OnInit{
        }
       async add(postdata?:any){
            if(postdata){
-               let msg=await this.memberservice.memberadd(this.userDetail);
+               let msg=await this.fittingservice.fittingadd(this.userDetail);
                if(msg.status==1){
                    this.userInfo=msg.data;
                    let msgs={severity:'info', summary:'提示', detail:'添加成功'};
@@ -82,7 +82,7 @@ export class MemberComponent implements OnInit{
        }
        async del(data){
             let params={id:data.id};
-            let msg=await this.memberservice.memberdel(params);
+            let msg=await this.fittingservice.fittingdel(params);
        }
       msg(msg){
         //    this.confirmationService.confirm({
@@ -102,7 +102,7 @@ export class MemberComponent implements OnInit{
           });
           str=str.substring(0,str.length-1);
           let params={ids:str};
-          let msg=await this.memberservice.memberdel(params);
+          let msg=await this.fittingservice.fittingdel(params);
           if(msg.status==1){
               this.userInfo=msg.data;
           }
@@ -110,7 +110,7 @@ export class MemberComponent implements OnInit{
       }
      async onsearch(){
          
-          let ret=await this.memberservice.membersearch(this.search); console.log('1',this.search);
+          let ret=await this.fittingservice.fittingsearch(this.search); console.log('1',this.search);
           this.userInfo=ret;
       }
 } 
