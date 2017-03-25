@@ -146,6 +146,34 @@ export class DocumentaryComponent implements OnInit{
          
           let ret=await this.documentaryservice.documentarysearch(this.search); console.log('1',this.search);
           this.userInfo=ret;
+          this.userInfo.forEach(e=>{
+               switch(e.status){
+                   case 1:
+                   e._status="待查看";
+                   break;
+                   case 2:
+                   e._status="待分配";
+                   break; 
+                   case 3:
+                   e._status="待确认";
+                   break; 
+                   case 4:
+                   e._status="维修中";
+                   break; 
+                   case 5:
+                   e._status="待发货";
+                   break; 
+                   case 6:
+                   e._status="待收货";
+                   break;
+                    case 7:
+                   e._status="待评价";
+                   break;
+                    case 8:
+                   e._status="完成";
+                   break; 
+               }
+           });
       }
        lmsgs:any=[];
        uploadedFiles: any[] = [];

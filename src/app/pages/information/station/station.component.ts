@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 
 import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
 import {InformationService}from '../../../providers/services/information.service';
+import {Config} from '../../../config'
 @Component({
     selector:'station',
     styleUrls: ['station.component.scss'],
@@ -16,6 +17,7 @@ export class StationComponent implements OnInit{
        public listType=[
            {label:"列表1",value:true},{label:"列表2",value:false}];
        public msgs:any=[];
+       public baseUrl:any;
        public showType:any;
        public displayDialog:boolean=false;
        public images:any;
@@ -28,6 +30,7 @@ export class StationComponent implements OnInit{
        private search:any={id:null,name:null};
        
        constructor(private stationservice:InformationService,private confirmationService: ConfirmationService){
+           this.baseUrl=Config.baseUrl;
        }
 
       async ngOnInit(){
