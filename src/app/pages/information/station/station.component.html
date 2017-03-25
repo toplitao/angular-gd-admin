@@ -65,7 +65,7 @@
             <div *ngIf="showType==1" >
                 <img [src]="pic" *ngFor="let pic of selectedRow?.work_img" (click)="selectedPic=pic;selectedPicShow=true;" style="width: 100px;height: 100px;">   
                 <p-growl [value]="lmsgs"></p-growl>
-                <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-uploads?id='+selectedRow?.id+'&dir=station'" (onUpload)="onUpload($event)" 
+                <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-uploads?id='+selectedRow?.id+'&dir=station&table=Station&filed=work_img'" (onUpload)="onUpload($event)" 
                  multiple="multiple" accept="image/*" maxFileSize="1000000">
                     <template pTemplate type="content">
                         <ul *ngIf="uploadedFiles.length">
