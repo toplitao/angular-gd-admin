@@ -82,6 +82,15 @@
                     <div class="ui-grid-col-4">维修员 </div>
                     <div class="ui-g-6 ui-md-3">{{userDetail.repairer_name}}</div>
                 </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">图片</div>
+                    <div class="ui-g-6 ui-md-3">
+                        <button type="text" pButton label="Basic" (click)="op1.toggle($event)"></button>
+                        <p-overlayPanel #op1>
+                            <img src="userDetail.picture" alt="Galleria 1" />
+                        </p-overlayPanel>
+                    </div>
+                </div>
         </div>
         <p-footer>
             <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">

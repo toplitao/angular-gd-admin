@@ -34,6 +34,11 @@ import {
 
     InformationModule,
     InformationRoutes,
+
+    InteractiveModule,
+    InteractiveRoutes,
+
+    SharedModule
     // InfoModule,
     // InfoModuleRoutes
 
@@ -57,7 +62,8 @@ export const AppModules: any[] = [
     OrderModule,
     FittingModule,
     InformationModule,
-
+    InteractiveModule,
+    SharedModule
 ];
 // 用于统一导出整个项目的Service到 module
 export const AppServices: any[] = [
@@ -88,6 +94,7 @@ const routes: Routes = [
             { path: 'order', children: OrderRoutes },
             { path: 'fitting', children: FittingRoutes },
             { path: 'information', children: InformationRoutes },
+            { path: 'interactive', children: InteractiveRoutes },
             //{ path: 'basicinfo', children: InfoModuleRoutes },
 
         ]
@@ -100,6 +107,8 @@ const routes: Routes = [
     OrderModule,
     FittingModule,
     InformationModule,
+    InteractiveModule,
+    SharedModule
     //InfoModule,
     ],
     exports: [RouterModule, 
@@ -107,6 +116,8 @@ const routes: Routes = [
     OrderModule,
     FittingModule,
     InformationModule,
+    InteractiveModule,
+    SharedModule
 
     //InfoModule
     ]

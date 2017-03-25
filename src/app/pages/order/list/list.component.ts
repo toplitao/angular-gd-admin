@@ -33,7 +33,7 @@ export class ListComponent implements OnInit{
            this.orderList();
        }
       async orderList(){
-           this.userInfo=await this.orderservice.orderlist();
+           this.userInfo=await this.orderservice.orderlist();console.log('111',this.userInfo);
            this.userInfo.forEach(e=>{
                switch(e.status){
                    case 1:

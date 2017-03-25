@@ -5,4 +5,6 @@ export * from './goods/goods.component'
 export * from './order/order.module';
 export * from './Fitting/fitting.module';
 export * from './information/information.module';
+export * from './shared/shared.module';
+export * from './interactive/interactive.module';
 

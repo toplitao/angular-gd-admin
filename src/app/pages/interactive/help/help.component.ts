@@ -2,26 +2,33 @@ import {Component,OnInit,OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
-import {MemberService}from '../../../providers/services/member.service';
+import {InformationService}from '../../../providers/services/information.service';
+import {EditorModule,SharedModule} from 'primeng/primeng';
 @Component({
-    selector:'repairer',
-    styleUrls: ['repairer.component.scss'],
-    templateUrl: 'repairer.component.html',
+    selector:'station',
+    styleUrls: ['help.component.scss'],
+    templateUrl: 'help.component.html',
      providers: [ConfirmationService]
 })
-export class RepairerComponent implements OnInit{
+export class HelpComponent implements OnInit{
        public Show:any=[
            {'dialog':false,'tableshow':true,'cshow':false,'addshow':false,'updateshow':false}
            ]
        public listType=[
-           {label:"未审核",value:false},{label:'已审核',value:true},{label:'未通过',value:false}];
+           {label:"列表1",value:true},{label:"列表2",value:false}];
        public msgs:any=[];
+       public showType:any;
+       public displayDialog:boolean=false;
+       public images:any;
+       public selectedPic:any;
+       public selectedPicShow:boolean=false;
        public userDetail:any=[];
        private userInfo:any=[];
        private selected:any;
-       private search:any={id:null,username:null};
+       private selectedRow:any
+       private search:any={id:null,name:null};
        
-       constructor(private repairerservice:MemberService,private confirmationService: ConfirmationService){
+       constructor(private stationservice:InformationService,private confirmationService: ConfirmationService){
        }
 
       async ngOnInit(){
@@ -29,15 +36,7 @@ export class RepairerComponent implements OnInit{
            this.userList();
        }
       async userList(){
-           this.userInfo=await this.repairerservice.repairerlist();
-           this.userInfo.forEach(e=>{
-               if(e.status==1){
-                   e._status="空闲";
-               }else{
-                   e._status="忙碌";
-               }
-           });
-           console.log('111',this.userInfo);
+           this.userInfo=await this.stationservice.stationlist();console.log('11',this.userInfo);
        }
        detail(msg){ console.log('msg',msg);
            this.userDetail=msg;
@@ -50,7 +49,7 @@ export class RepairerComponent implements OnInit{
            this.Show.addShow=false;
        }
        async updatepost(){
-            let msg=await this.repairerservice.repairerupdate(this.userDetail);
+            let msg=await this.stationservice.stationupdate(this.userDetail);
             if(msg.status==1){
                 this.userInfo=msg.data;
                 this.Show.cshow=false;
@@ -63,7 +62,7 @@ export class RepairerComponent implements OnInit{
        }
       async add(postdata?:any){
            if(postdata){
-               let msg=await this.repairerservice.repaireradd(this.userDetail);
+               let msg=await this.stationservice.stationadd(this.userDetail);
                if(msg.status==1){
                    this.userInfo=msg.data;
                    let msgs={severity:'info', summary:'提示', detail:'添加成功'};
@@ -76,7 +75,7 @@ export class RepairerComponent implements OnInit{
            }else{
                 this.userDetail={
                     id:null,
-                    username:null,
+                    name:null,
                     address:null,
                     phone:null,
                     email:null,
@@ -90,7 +89,7 @@ export class RepairerComponent implements OnInit{
        }
        async del(data){
             let params={id:data.id};
-            let msg=await this.repairerservice.repairerdel(params);
+            let msg=await this.stationservice.stationdel(params);
        }
       msg(msg){
         //    this.confirmationService.confirm({
@@ -110,7 +109,7 @@ export class RepairerComponent implements OnInit{
           });
           str=str.substring(0,str.length-1);
           let params={ids:str};
-          let msg=await this.repairerservice.repairerdel(params);
+          let msg=await this.stationservice.stationdel(params);
           if(msg.status==1){
               this.userInfo=msg.data;
           }
@@ -118,7 +117,27 @@ export class RepairerComponent implements OnInit{
       }
      async onsearch(){
          
-          let ret=await this.repairerservice.repairersearch(this.search); console.log('1',this.search);
+          let ret=await this.stationservice.stationsearch(this.search); console.log('1',this.search);
           this.userInfo=ret;
       }
+       lmsgs:any=[];
+       uploadedFiles: any[] = [];
+        onUpload(event) {
+        for(let file of event.files) {
+            this.uploadedFiles.push(file);
+        }
+    
+        this.lmsgs = [];
+        this.lmsgs.push({severity: 'info', summary: 'File Uploaded', detail: ''});
+        }
+       selectedGoods(station,showType) {
+        console.log(station);
+        this.selectedRow = station;
+        this.showType=showType;
+        this.displayDialog = true;
+    }
+    open(e){
+        console.log(e);
+        this.selectedPicShow=e;
+    }
 } 

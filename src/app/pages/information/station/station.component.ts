@@ -16,12 +16,23 @@ export class StationComponent implements OnInit{
        public listType=[
            {label:"列表1",value:true},{label:"列表2",value:false}];
        public msgs:any=[];
+       public showType:any;
+       public displayDialog:boolean=false;
+       public images:any;
+       public selectedPic:any;
+       public selectedPicShow:boolean=false;
        public userDetail:any=[];
        private userInfo:any=[];
        private selected:any;
+       private selectedRow:any
        private search:any={id:null,name:null};
        
        constructor(private stationservice:InformationService,private confirmationService: ConfirmationService){
+            this.images = [];
+            this.images.push({source:'showcase/resources/demo/images/sopranos/sopranos1.jpg', thumbnail: 'showcase/resources/demo/images/sopranos/sopranos1_small.jpg', title:'Sopranos 1'});
+            this.images.push({source:'showcase/resources/demo/images/sopranos/sopranos2.jpg', thumbnail: 'showcase/resources/demo/images/sopranos/sopranos2_small.jpg', title:'Sopranos 2'});
+        this.images.push({source:'showcase/resources/demo/images/sopranos/sopranos3.jpg', thumbnail: 'showcase/resources/demo/images/sopranos/sopranos3_small.jpg', title:'Sopranos 3'});
+        this.images.push({source:'showcase/resources/demo/images/sopranos/sopranos4.jpg', thumbnail: 'showcase/resources/demo/images/sopranos/sopranos4_small.jpg', title:'Sopranos 4'});
        }
 
       async ngOnInit(){
@@ -113,4 +124,24 @@ export class StationComponent implements OnInit{
           let ret=await this.stationservice.stationsearch(this.search); console.log('1',this.search);
           this.userInfo=ret;
       }
+       lmsgs:any=[];
+       uploadedFiles: any[] = [];
+        onUpload(event) {
+        for(let file of event.files) {
+            this.uploadedFiles.push(file);
+        }
+    
+        this.lmsgs = [];
+        this.lmsgs.push({severity: 'info', summary: 'File Uploaded', detail: ''});
+        }
+       selectedGoods(station,showType) {
+        console.log(station);
+        this.selectedRow = station;
+        this.showType=showType;
+        this.displayDialog = true;
+    }
+    open(e){
+        console.log(e);
+        this.selectedPicShow=e;
+    }
 } 

@@ -31,7 +31,7 @@ import {
     MenuItem,
     ToolbarModule,
     ToggleButtonModule,
-    LightboxModule
+    LightboxModule,
 } from 'primeng/primeng';
 import { TreeModule } from 'angular-tree-component';//angular-tree-component
 

@@ -45,7 +45,7 @@ export class Menu {
                 icon: 'fa-star',
                 items: [
                     { label: '视频审核', icon: 'fa-star-o', routerLink: 'member' },
-                    { label: '问题回答', icon: 'fa-star-o', routerLink: 'member' },
+                    { label: '问题回答', icon: 'fa-star-o', routerLink: ['interactive/help'] },
                 ]
             },
             {
