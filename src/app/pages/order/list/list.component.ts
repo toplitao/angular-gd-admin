@@ -22,6 +22,7 @@ export class ListComponent implements OnInit{
        private selected:any;
        private search:any={id:null,name:null};
        private repairer=[];
+       private company:any=[];
        private selectedRepairer:any;
        
        
@@ -31,6 +32,10 @@ export class ListComponent implements OnInit{
       async ngOnInit(){
            this.Show.tableshow=true;
            this.orderList();
+       }
+       async expressCompany(){
+           this.company=await this.orderservice.companylist();
+           console.log('11',this.company);
        }
       async orderList(){
            this.userInfo=await this.orderservice.orderlist();console.log('111',this.userInfo);

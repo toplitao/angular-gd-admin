@@ -11,6 +11,8 @@ export class OrderService {
 
         selectrepairer:'order/list/selectedrepairer',
         repairersearch:'user/repairer/distribution',
+        companylist:'common/express-code-search',
+        expressinfo:'common/express-search',
     };
 
     constructor(private api: Api) {
@@ -34,5 +36,11 @@ export class OrderService {
     }
     public selectedrepairer(params){
          return this.api.get(this.apis.selectrepairer,params).toPromise();
+    }
+    public companylist(){
+         return this.api.get(this.apis.companylist).toPromise();
+    }
+    public expressinfo(params){
+        return this.api.get(this.apis.expressinfo,params).toPromise();
     }
 }
