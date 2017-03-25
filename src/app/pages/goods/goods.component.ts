@@ -182,8 +182,14 @@ export class GoodsComponent implements OnInit{
         this.lmsgs = [];
         this.lmsgs.push({severity: '信息', summary: '上传成功', detail: ''});
     }
-    async delete(path,id){
+    async deleteDoc(path,id){
         let ret=await this.filesService.delete({path:path,id:id,table:'Goods',filed:'doc'});
+        if(ret.id){
+            this.selectedGood=ret;
+        }
+    }
+    async deletePic(path,id){
+        let ret=await this.filesService.delete({path:path,id:id,table:'Goods',filed:'picture'});
         if(ret.id){
             this.selectedGood=ret;
         }

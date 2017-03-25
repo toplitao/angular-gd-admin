@@ -75,7 +75,7 @@
             <div *ngIf="showType==1" >
                 <div *ngFor="let pic of selectedGood?.picture" style="float: left;width: 100px;height: 100px;">
                     <img [src]="pic" (click)="selectedPic=pic;selectedPicShow=true;" style="width: 100px;height: 100px;">   
-                    <div class="yuan" style="position: absolute" (click)="delete(pic,selectedGood.id)"><i class="fa fa-minus"></i></div>
+                    <div class="yuan" style="position: absolute" (click)="deletePic(pic,selectedGood.id)"><i class="fa fa-minus"></i></div>
                 </div><br>
                 <p-growl [value]="lmsgs"></p-growl>
                 <div style="width: 100%;float: left">
@@ -92,7 +92,7 @@
             <div *ngIf="showType==2">
                 <div *ngFor="let doc of selectedGood?.doc">
                     <a style="display: block;float: left" [href]="doc">{{doc}}</a>
-                    <div class="yuan" style="float: left" (click)="delete(doc,selectedGood.id)"><i class="fa fa-minus"></i></div>
+                    <div class="yuan" style="float: left" (click)="deleteDoc(doc,selectedGood.id)"><i class="fa fa-minus"></i></div>
                 </div>
                 <p-growl [value]="lmsgs"></p-growl>
                 <div style="width: 100%;float: left">
