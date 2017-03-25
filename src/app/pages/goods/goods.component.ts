@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 
 import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
 import {GoodsService,FilesService}from '../../providers/services';
+import { Config } from '../../config';
 @Component({
     selector:'goods',
     styleUrls: ['goods.component.scss'],
@@ -10,6 +11,7 @@ import {GoodsService,FilesService}from '../../providers/services';
      providers: [ConfirmationService]
 })
 export class GoodsComponent implements OnInit{
+        public baseUrl = Config.baseUrl;
        public Show:any=[
            {'dialog':false,'tableshow':true,'cshow':false,'addshow':false,'updateshow':false}
            ]
@@ -35,7 +37,7 @@ export class GoodsComponent implements OnInit{
            this.options = {
                 language: "zh_cn", //配置语言
                 height:400,
-                imageUploadURL:'http://localhost:8000/api/common/file-upload',
+                imageUploadURL:this.baseUrl+'common/file-upload',
                 imageUploadParam:'file',
                 imageUploadParams:{
                     id:1,

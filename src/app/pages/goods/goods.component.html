@@ -64,9 +64,7 @@
                 <button type="button" pButton icon="fa-refresh" (click)="userList()"></button>
             </template>
             <template let-goods="rowData" pTemplate="body">
-                <button type="button" pButton (click)="update(goods)"  label="修改"></button>
                 <button type="button" pButton (click)="del(goods)"  label="删除"></button>
-                <button type="button" pButton (click)="detail(goods)" label="详细"></button>
             </template>
         </p-column>
     </p-dataTable>
@@ -79,7 +77,7 @@
                 </div><br>
                 <p-growl [value]="lmsgs"></p-growl>
                 <div style="width: 100%;float: left">
-                <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-uploads?id='+selectedGood?.id+'&dir=goods/picture&table=Goods&filed=picture'" (onUpload)="onUpload($event)" 
+                <p-fileUpload name="files[]" [url]="baseUrl+'api/common/file-uploads?id='+selectedGood?.id+'&dir=goods/picture&table=Goods&filed=picture'" (onUpload)="onUpload($event)" 
                    multiple="multiple" accept="image/*" maxFileSize="1000000">
                     <template pTemplate type="content">
                         <ul *ngIf="uploadedFiles.length">
@@ -96,7 +94,7 @@
                 </div>
                 <p-growl [value]="lmsgs"></p-growl>
                 <div style="width: 100%;float: left">
-                    <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-uploads?id='+selectedGood?.id+'&dir=goods/doc&table=Goods&filed=doc'" (onUpload)="onUpload($event)" 
+                    <p-fileUpload name="files[]" [url]="baseUrl+'api/common/file-uploads?id='+selectedGood?.id+'&dir=goods/doc&table=Goods&filed=doc'" (onUpload)="onUpload($event)" 
                     multiple="multiple" accept="image/*" maxFileSize="1000000">
                         <template pTemplate type="content">
                             <ul *ngIf="uploadedFiles.length">
@@ -119,61 +117,20 @@
 </div>
 
 <div>
-    <p-dialog header="会员详情" [(visible)]="Show.dialog" [responsive]="true" showEffect="fade" [modal]="true" width="400">
-        <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="userDetail" style="font-size:16px;text-align:center;padding:20px">
-            <!--<div class="ui-grid-row">
-                <div class="ui-grid-col-12" style="text-align:center"><img src="showcase/resources/demo/images/car/{{selectedCar.brand}}-big.gif"></div>
-            </div>-->
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">id: </div>
-                <div class="ui-grid-col-8">{{userDetail.id}}</div>
-                </div>
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">name: </div>
-                    <div class="ui-grid-col-8">{{userDetail.name}}</div>
-                </div>
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">电话: </div>
-                    <div class="ui-grid-col-8">{{userDetail.phone}}</div>
-                </div>
-                <div class="ui-grid-row">
-                    <div class="ui-grid-col-4">e-mail: </div>
-                    <div class="ui-grid-col-8">{{userDetail.email}}</div>
-            </div>
-        </div>
-    </p-dialog>
-</div>
-<div>
     <p-growl [value]="msgs"></p-growl>
     <p-confirmDialog width="425"></p-confirmDialog>
 </div>
 <div>
     <p-dialog header="会员详情" [(visible)]="Show.cshow"  width="400">
         <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="userDetail" style="font-size:16px;text-align:center;padding:20px">
-            <!--<div class="ui-grid-row">
-                <div class="ui-grid-col-12" style="text-align:center"><img src="showcase/resources/demo/images/car/{{selectedCar.brand}}-big.gif"></div>
-            </div>-->
             <div class="ui-grid-row">
-                <div class="ui-grid-col-4">会员名: </div>
+                <div class="ui-grid-col-4">产品名称: </div>
                 <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.name" size="10" ></p-autoComplete></div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">电话: </div>
-                <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.phone" size="10"  ></p-autoComplete></div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">邮箱: </div>
-                <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.email" size="10"  ></p-autoComplete></div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">地址: </div>
-                <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.address" size="10"  ></p-autoComplete></div>
             </div>
         </div>
         <p-footer>
             <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
                 <button type="button" pButton icon="fa-close" (click)="Show.cshow=false" label="取消"></button>
-                <button *ngIf="Show.updateshow" type="button" pButton icon="fa-check" (click)="updatepost()" label="修改"></button>
                 <button *ngIf="Show.addshow" type="button" pButton icon="fa-check" (click)="add(1)" label="添加"></button>
             </div>  
         </p-footer>
