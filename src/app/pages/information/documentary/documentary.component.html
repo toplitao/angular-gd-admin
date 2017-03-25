@@ -1,10 +1,10 @@
 <div class="ui-g">
     <div class="ui-g-8">
         <div class="ui-g-2">
-        <p-autoComplete [(ngModel)]="search.uid" size="10" placeholder="会员编号" ></p-autoComplete>
+        <input type="text" pInputText [(ngModel)]="search.uid" size="10" placeholder="会员编号" > 
         </div>
     <div  class="ui-g-2">
-        <p-autoComplete [(ngModel)]="search.oid" size="15" placeholder="订单编号" ></p-autoComplete>
+        <input type="text" pInputText [(ngModel)]="search.oid" size="15" placeholder="订单编号" > 
     </div>
     <div  class="ui-g-2">
         <button pButton type="button" (click)="onsearch()" label="搜索"></button>
@@ -94,19 +94,19 @@
                 </div>-->
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">会员名: </div>
-                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.name" size="10" ></p-autoComplete></div>
+                    <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="userDetail.name" size="10" > </div>
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">电话: </div>
-                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.phone" size="10"  ></p-autoComplete></div>
+                    <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="userDetail.phone" size="10"  > </div>
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">邮箱: </div>
-                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.email" size="10"  ></p-autoComplete></div>
+                    <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="userDetail.email" size="10"  > </div>
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">地址: </div>
-                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.address" size="10"  ></p-autoComplete></div>
+                    <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="userDetail.address" size="10"  > </div>
                 </div>
             </div>
             <p-footer>

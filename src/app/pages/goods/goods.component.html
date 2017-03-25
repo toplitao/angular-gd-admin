@@ -1,10 +1,10 @@
 <div class="page">
 <div class="ui-g">
         <div class="ui-g-2">
-        <p-autoComplete [(ngModel)]="search.name" size="10" placeholder="会员名" ></p-autoComplete>
+        <input type="text" pInputText [(ngModel)]="search.name" size="10" placeholder="会员名" > 
         </div>
     <div  class="ui-g-2">
-        <p-autoComplete [(ngModel)]="search.id" size="15" placeholder="会员编号" ></p-autoComplete>
+        <input type="text" pInputText [(ngModel)]="search.id" size="15" placeholder="会员编号" > 
     </div>
     <div  class="ui-g-2">
         <button pButton type="button" (click)="onsearch()" label="搜索"></button>
@@ -125,7 +125,7 @@
         <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="userDetail" style="font-size:16px;text-align:center;padding:20px">
             <div class="ui-grid-row">
                 <div class="ui-grid-col-4">产品名称: </div>
-                <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.name" size="10" ></p-autoComplete></div>
+                <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="userDetail.name" size="10" > </div>
             </div>
         </div>
         <p-footer>
