@@ -30,8 +30,8 @@ import {
     OrderModule,
     OrderRoutes,
 
-    //FittingModule,
-    //FittingRoutes,
+    FittingModule,
+    FittingRoutes,
 
     InformationModule,
     InformationRoutes,
@@ -61,7 +61,7 @@ export const AppModules: any[] = [
     LayoutModule,
     UserModule,
     OrderModule,
-    //FittingModule,
+    FittingModule,
     InformationModule,
     InteractiveModule,
     SharedModule
@@ -94,7 +94,7 @@ const routes: Routes = [
             { path: 'user', children: UserRoutes },
             { path: 'goods', component: GoodsComponent },
             { path: 'order', children: OrderRoutes },
-            //{ path: 'fitting', children: FittingRoutes },
+            { path: 'fitting', children: FittingRoutes },
             { path: 'information', children: InformationRoutes },
             { path: 'interactive', children: InteractiveRoutes },
             //{ path: 'basicinfo', children: InfoModuleRoutes },
@@ -107,7 +107,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes, { useHash: true }), 
     UserModule,
     OrderModule,
-    //FittingModule,
+    FittingModule,
     InformationModule,
     InteractiveModule,
     SharedModule
@@ -116,7 +116,7 @@ const routes: Routes = [
     exports: [RouterModule, 
     UserModule,
     OrderModule,
-    //FittingModule,
+    FittingModule,
     InformationModule,
     InteractiveModule,
     SharedModule
