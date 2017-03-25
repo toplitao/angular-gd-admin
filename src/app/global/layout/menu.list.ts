@@ -44,7 +44,6 @@ export class Menu {
                 label: '交互',
                 icon: 'fa-star',
                 items: [
-                    { label: '视频审核', icon: 'fa-star-o', routerLink: 'member' },
                     { label: '问题回答', icon: 'fa-star-o', routerLink: ['interactive/help'] },
                 ]
             },
@@ -52,17 +51,8 @@ export class Menu {
                 label: '信息',
                 icon: 'fa-star',
                 items: [
-                    { label: '人员资料', icon: 'fa-star-o', routerLink: ['information/station'] },
                     { label: '跟单资料', icon: 'fa-star-o', routerLink: ['information/documentary'] },
                     { label: '驻点信息', icon: 'fa-star-o', routerLink: ['information/station'] }
-                ]
-            },
-            {
-                label: '设置',
-                icon: 'fa-star',
-                items: [
-                    { label: '审核', icon: 'fa-star-o', routerLink: 'member' },
-                    { label: '发布', icon: 'fa-star-o', routerLink: ['a/b'] }
                 ]
             },
             

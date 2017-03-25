@@ -1,9 +1,9 @@
 <div class="ui-g">
         <div class="ui-g-1">
-        <p-autoComplete [(ngModel)]="search.name" size="10" placeholder="会员名" ></p-autoComplete>
+        <p-autoComplete [(ngModel)]="search.id" size="10" placeholder="订单号" ></p-autoComplete>
         </div>
     <div  class="ui-g-1">
-        <p-autoComplete [(ngModel)]="search.id" size="15" placeholder="会员编号" ></p-autoComplete>
+        <p-autoComplete [(ngModel)]="search.repairer_name" size="15" placeholder="维修员" ></p-autoComplete>
     </div>
     <div  class="ui-g-1">
         <button pButton type="button" (click)="onsearch()" label="搜索"></button>
@@ -11,15 +11,8 @@
 </div>
 <div class="ui-g">
     <div  class="ui-g-1">
-        <button pButton type="button" (click)="selectedDel()" label="删除选中"></button>
-    </div>
-    <div  class="ui-g-1">
         <button pButton type="button" (click)="add()" label="新增"></button>
     </div>
-    <div class="ui-g-2">
-         <p-selectButton [options]="listType" [(ngModel)]="Show.tableshow" ></p-selectButton>
-    </div>
-   
 </div>
 <div>
     

@@ -16,6 +16,7 @@ import {
     InformationService,
     FilesService,
     DocumentaryService,
+    HelpService
 } from './providers';
 
 // 导入页面组件或模块
@@ -80,6 +81,7 @@ export const AppServices: any[] = [
     InformationService,
     FilesService,
     DocumentaryService,
+    HelpService,
     // {provide: RouteReuseStrategy, useClass: CustomReuseStrategy},
 ];
 // ===============================================================

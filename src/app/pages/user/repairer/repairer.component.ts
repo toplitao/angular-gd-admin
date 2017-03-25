@@ -106,6 +106,9 @@ export class RepairerComponent implements OnInit{
        async del(data){
             let params={id:data.id};
             let msg=await this.repairerservice.repairerdel(params);
+            if(msg.status==1){
+                this.userList();
+            }
        }
       msg(msg){
         //    this.confirmationService.confirm({
@@ -133,7 +136,43 @@ export class RepairerComponent implements OnInit{
       }
      async onsearch(){
          
-          let ret=await this.repairerservice.repairersearch(this.search); console.log('1',this.search);
+          let ret=await this.repairerservice.repairersearch(this.search); console.log('1',ret);
+          this.ucheck.length=0;
+           this.ycheck.length=0;
+           this.ncheck.length=0;
+          if(this.search.id){console.log('1',ret[0].level);
+              if(ret[0].level==1){
+                   this.Show.tableshow='2';
+                   this.ucheck=ret;
+                   if(ret[0].status==1){
+                       ret[0]._status='空闲';
+                   }else{
+                       ret[0]._status='忙碌';
+                   }
+              }else if(ret[0].level==2){
+                   this.ycheck=ret;
+                   this.Show.tableshow='1';
+              }else{
+                   this.ncheck=ret;
+                   this.Show.tableshow='3';
+              }
+          }else{
+               this.Show.tableshow='1';
+               ret.forEach(e=>{
+                if(e.level==1){//未审核
+                    this.ucheck.push(e);
+                }else if(e.level==2){//通过
+                    this.ycheck.push(e);
+                }else{//未通过
+                    this.ncheck.push(e);
+                }
+                if(e.status==1){
+                    e._status="空闲";
+                }else if(e.status==2){
+                    e._status="忙碌";
+                }
+            });
+          }
           this.userInfo=ret;
       }
       check(repairer,level){
