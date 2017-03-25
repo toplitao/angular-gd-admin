@@ -79,7 +79,7 @@
                 </div><br>
                 <p-growl [value]="lmsgs"></p-growl>
                 <div style="width: 100%;float: left">
-                <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-upload?id='+selectedGood?.id+'&dir=goods/picture&table=Goods&filed=picture'" (onUpload)="onUpload($event)" 
+                <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-uploads?id='+selectedGood?.id+'&dir=goods/picture&table=Goods&filed=picture'" (onUpload)="onUpload($event)" 
                    multiple="multiple" accept="image/*" maxFileSize="1000000">
                     <template pTemplate type="content">
                         <ul *ngIf="uploadedFiles.length">
@@ -96,7 +96,7 @@
                 </div>
                 <p-growl [value]="lmsgs"></p-growl>
                 <div style="width: 100%;float: left">
-                    <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-upload?id='+selectedGood?.id+'&dir=goods/doc&table=Goods&filed=doc'" (onUpload)="onUpload($event)" 
+                    <p-fileUpload name="files[]" [url]="'http://localhost:8000/api/common/file-uploads?id='+selectedGood?.id+'&dir=goods/doc&table=Goods&filed=doc'" (onUpload)="onUpload($event)" 
                     multiple="multiple" accept="image/*" maxFileSize="1000000">
                         <template pTemplate type="content">
                             <ul *ngIf="uploadedFiles.length">
@@ -105,6 +105,14 @@
                         </template>        
                     </p-fileUpload>
                 </div>
+            </div>
+            <div *ngIf="showType==3" (froala)="froalaContent($event)">
+                <button type="button" pButton label="保存" (click)="updateHelp()" ></button>
+                <div [froalaEditor]='options' [(froalaModel)]="selectedGood.help"></div>
+            </div>
+            <div *ngIf="showType==4" (froala)="froalaContent($event)">
+                <button type="button" pButton label="保存" (click)="updateMaintain()" ></button>
+                <div [froalaEditor]='options' [(froalaModel)]="selectedGood.maintain"></div>
             </div>
         </div>
     </p-dialog>

@@ -1,4 +1,4 @@
-import {Component,OnInit,OnDestroy} from '@angular/core';
+import {Component,OnInit,OnDestroy,EventEmitter,Output} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {ConfirmDialogModule,ConfirmationService} from 'primeng/primeng';
@@ -20,7 +20,10 @@ export class GoodsComponent implements OnInit{
        private userInfo:any=[];
        private selected:any;
        private search:any={id:null,name:null};
-       
+
+        @Output() froala = new EventEmitter();
+        options:Object;
+        froalaText:string;
        constructor(private goodsservice:GoodsService,private confirmationService: ConfirmationService,
        private filesService:FilesService){
        }
@@ -28,7 +31,39 @@ export class GoodsComponent implements OnInit{
       async ngOnInit(){
            this.Show.tableshow=true;
            this.userInfo=await this.goodsservice.goodsList();
+           var that = this;
+           this.options = {
+                language: "zh_cn", //配置语言
+                height:400,
+                imageUploadURL:'http://localhost:8000/api/common/file-upload',
+                imageUploadParam:'file',
+                imageUploadParams:{
+                    id:1,
+                    dir:'goods/help',
+                    table:'Goods',
+                    filed:'help',
+                    type:'froalaEditor'
+                },
+                placeholderText: "请输入内容", // 文本框提示内容
+                charCounterCount: true, // 是否开启统计字数
+                charCounterMax: 200, // 最大输入字数,目前只支持英文字母
+                // 注意导航条的配置, 按照官方的文档,无法配置,只能使用toolbarButtons来配置了。
+                toolbarButtons: ['fullscreen', '|', 'bold', 'italic', 'underline', 'strikeThrough', 'align', 'insertLink', 'insertImage', 'insertHR', 'subscript', 'superscript'],
+                codeMirror: false, // 高亮显示html代码
+                codeMirrorOptions: { // 配置html代码参数
+                    tabSize: 4
+                },
+                // 事件, 每次输入,就将值传递给父组件, 或者使用失去焦点的时候传递。
+                events: {
+                    'froalaEditor.keyup': function (e, editor) {
+                     //that.froala.emit(that.selectedGood.help);
+                     //console.log(that.selectedGood.help);
+                    //console.log(editor.selection.get());
+                    }
+                }
+            }
        }
+
       async userList(){
            this.userInfo=await this.goodsservice.goodsList();
        }
@@ -159,5 +194,11 @@ export class GoodsComponent implements OnInit{
     selectedPicShow:boolean=false;
     open(e){
         this.selectedPicShow=e;
+    }
+    updateHelp(){
+        this.goodsservice.goodsUpdate({id:this.selectedGood.id,help:this.selectedGood.help});
+    }
+    updateMaintain(){
+        this.goodsservice.goodsUpdate({id:this.selectedGood.id,maintain:this.selectedGood.maintain});
     }
 } 

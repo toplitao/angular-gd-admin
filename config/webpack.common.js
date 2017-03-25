@@ -209,6 +209,10 @@ module.exports = function (options) {
         filename: 'webpack-assets.json',
         prettyPrint: true
       }),
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+      }),
 
       /*
        * Plugin: ForkCheckerPlugin
@@ -268,7 +272,19 @@ module.exports = function (options) {
         { from: 'src/assets', to: 'assets' },
         { from: 'src/meta'},
         { from: './node_modules/primeng/resources/primeng.min.css' ,to :'assets/css'},
-        { from: './node_modules/primeng/resources/themes/omega' ,to :'assets/css'}
+        { from: './node_modules/primeng/resources/themes/omega' ,to :'assets/css'},
+        {
+          from: 'node_modules/froala-editor/css/',
+          to: 'assets/froala-editor/css/',
+        },
+        {
+          from: 'node_modules/font-awesome/css/font-awesome.min.css',
+          to: 'assets/font-awesome/css/font-awesome.min.css',
+        },
+        {
+          from: 'node_modules/font-awesome/fonts',
+          to: 'assets/font-awesome/fonts'
+        }
       ]),
 
 

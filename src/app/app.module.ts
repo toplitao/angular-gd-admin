@@ -12,8 +12,13 @@ import { AppRoutingModule, AppComponents, AppModules, AppServices } from './app.
 import { AppComponent }  from './app.component';
 import { SharedModule } from './pages/shared/shared.module';
 
+import "froala-editor/js/froala_editor.pkgd.min.js";
+
+import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+
 @NgModule({
     imports: [
+        FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
         BrowserModule,
         CommonModule,
         HttpModule,
