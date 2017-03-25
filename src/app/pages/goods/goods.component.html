@@ -77,7 +77,7 @@
                 </div><br>
                 <p-growl [value]="lmsgs"></p-growl>
                 <div style="width: 100%;float: left">
-                <p-fileUpload name="files[]" [url]="baseUrl+'api/common/file-uploads?id='+selectedGood?.id+'&dir=goods/picture&table=Goods&filed=picture'" (onUpload)="onUpload($event)" 
+                <p-fileUpload name="files[]" [url]="baseUrl+'common/file-uploads?id='+selectedGood?.id+'&dir=goods/picture&table=Goods&filed=picture'" (onUpload)="onUpload($event)" 
                    multiple="multiple" accept="image/*" maxFileSize="1000000">
                     <template pTemplate type="content">
                         <ul *ngIf="uploadedFiles.length">
@@ -94,7 +94,7 @@
                 </div>
                 <p-growl [value]="lmsgs"></p-growl>
                 <div style="width: 100%;float: left">
-                    <p-fileUpload name="files[]" [url]="baseUrl+'api/common/file-uploads?id='+selectedGood?.id+'&dir=goods/doc&table=Goods&filed=doc'" (onUpload)="onUpload($event)" 
+                    <p-fileUpload name="files[]" [url]="baseUrl+'common/file-uploads?id='+selectedGood?.id+'&dir=goods/doc&table=Goods&filed=doc'" (onUpload)="onUpload($event)" 
                     multiple="multiple" accept="image/*" maxFileSize="1000000">
                         <template pTemplate type="content">
                             <ul *ngIf="uploadedFiles.length">
