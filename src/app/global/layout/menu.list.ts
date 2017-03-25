@@ -52,8 +52,8 @@ export class Menu {
                 label: '信息',
                 icon: 'fa-star',
                 items: [
-                    { label: '人员资料', icon: 'fa-star-o', routerLink: ['a/b'] },
-                    { label: '跟单资料', icon: 'fa-star-o', routerLink: ['a/b'] },
+                    { label: '人员资料', icon: 'fa-star-o', routerLink: ['information/station'] },
+                    { label: '跟单资料', icon: 'fa-star-o', routerLink: ['information/documentary'] },
                     { label: '驻点信息', icon: 'fa-star-o', routerLink: ['information/station'] }
                 ]
             },

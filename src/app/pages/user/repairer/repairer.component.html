@@ -13,9 +13,6 @@
     <div  class="ui-g-1">
         <button pButton type="button" (click)="selectedDel()" label="删除选中"></button>
     </div>
-    <div  class="ui-g-1">
-        <button pButton type="button" (click)="add()" label="新增"></button>
-    </div>
     <div class="ui-g-2">
          <p-selectButton [options]="listType" [(ngModel)]="Show.tableshow" ></p-selectButton>
     </div>
@@ -27,15 +24,65 @@
         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
         <input #gb type="text" pInputText size="50" placeholder="任意字段查询">
     </div>
-    <p-dataTable *ngIf="Show.tableshow" [(selection)]="selected" [value]="userInfo" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+    <p-dataTable *ngIf="Show.tableshow==1" [(selection)]="selected" [value]="ycheck" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
         <p-header>维修人员列表</p-header>
         <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
-        <p-column field="id" header="id"></p-column>
+        <p-column field="id" [sortable]="true" header="id"></p-column>
         <p-column field="username" header="姓名"></p-column>
         <p-column field="iphone" header="电话"></p-column>
         <p-column field="repair_address" header="维修点"></p-column>
         <p-column field="_status" header="状态"></p-column>
-        <p-column field="created_at" header="注册时间"></p-column>
+        <p-column field="created_at" [sortable]="true" header="注册时间"></p-column>
+        <!--<p-column header="操作">
+            <template let-detail="rowData" pTemplate="body">
+            <button type="button" pButton  label="修改"></button>
+            <button type="button" pButton (click)="confirm()"  label="删除"></button>
+            <button type="button" pButton (click)="detail(detail)" label="详细"></button>
+            </template>
+        </p-column>-->
+        <p-column styleClass="col-button">
+        <template pTemplate="header">
+            <button type="button" pButton icon="fa-refresh" (click)="userList()"></button>
+        </template>
+        <template let-member="rowData" pTemplate="body">
+           <button type="button" pButton (click)="update(member)"  label="修改"></button>
+            <button type="button" pButton (click)="detail(member)" label="详细"></button>
+        </template>
+    </p-column>
+    </p-dataTable>
+     <p-dataTable *ngIf="Show.tableshow==2" [(selection)]="selected" [value]="ucheck" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+        <p-header>维修人员列表</p-header>
+        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+        <p-column field="id" [sortable]="true" header="id"></p-column>
+        <p-column field="username" header="姓名"></p-column>
+        <p-column field="iphone" header="电话"></p-column>
+        <p-column field="repair_address" header="申请驻点"></p-column>
+        <p-column field="created_at" [sortable]="true" header="申请时间"></p-column>
+        <!--<p-column header="操作">
+            <template let-detail="rowData" pTemplate="body">
+            <button type="button" pButton  label="修改"></button>
+            <button type="button" pButton (click)="confirm()"  label="删除"></button>
+            <button type="button" pButton (click)="detail(detail)" label="详细"></button>
+            </template>
+        </p-column>-->
+        <p-column styleClass="col-button">
+        <template pTemplate="header">
+            <button type="button" pButton icon="fa-refresh" (click)="userList()"></button>
+        </template>
+        <template let-repairer="rowData" pTemplate="body">
+           <button type="button" pButton (click)="check(repairer,2)"  label="通过"></button>
+           <button type="button" pButton (click)="check(repairer,3)"  label="不通过"></button>
+        </template>
+    </p-column>
+    </p-dataTable>
+     <p-dataTable *ngIf="Show.tableshow==3" [(selection)]="selected" [value]="ncheck" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+        <p-header>维修人员列表</p-header>
+        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+        <p-column field="id" [sortable]="true" header="id"></p-column>
+        <p-column field="username" header="姓名"></p-column>
+        <p-column field="iphone" header="电话"></p-column>
+        <p-column field="repair_address" header="申请驻点"></p-column>
+        <p-column field="created_at" [sortable]="true" header="申请时间"></p-column>
         <!--<p-column header="操作">
             <template let-detail="rowData" pTemplate="body">
             <button type="button" pButton  label="修改"></button>

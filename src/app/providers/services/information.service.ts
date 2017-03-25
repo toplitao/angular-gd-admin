@@ -12,6 +12,12 @@ export class InformationService {
         stationsearch:'information/station/search',
 
 
+        documentarylist: 'information/documentary',
+        documentaryadd:'information/documentary/add',
+        documentaryupdate:'information/documentary/update',
+        documentarydel:'information/documentary/del',
+        documentarysearch:'information/documentary/search',
+
     };
 
     constructor(private api: Api) {
@@ -32,6 +38,24 @@ export class InformationService {
     }
     public stationsearch(params){
         return this.api.get(this.apis.stationsearch,params).toPromise();
+    }
+
+
+
+    public documentarylist(){
+        return this.api.get(this.apis.documentarylist).toPromise();
+    }
+    public documentaryadd(params){
+        return this.api.post(this.apis.documentaryadd,params).toPromise();
+    }
+    public documentaryupdate(params){
+        return this.api.post(this.apis.documentaryupdate,params).toPromise();
+    }
+    public documentarydel(params){
+         return this.api.get(this.apis.documentarydel,params).toPromise();
+    }
+    public documentarysearch(params){
+        return this.api.get(this.apis.documentarysearch,params).toPromise();
     }
 
 }

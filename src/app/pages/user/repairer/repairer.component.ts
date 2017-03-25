@@ -11,29 +11,42 @@ import {MemberService}from '../../../providers/services/member.service';
 })
 export class RepairerComponent implements OnInit{
        public Show:any=[
-           {'dialog':false,'tableshow':true,'cshow':false,'addshow':false,'updateshow':false}
+           {'dialog':false,'tableshow':'1','cshow':false,'addshow':false,'updateshow':false}
            ]
        public listType=[
-           {label:"未审核",value:false},{label:'已审核',value:true},{label:'未通过',value:false}];
+           {label:"已审核",value:'1'},{label:'未审核',value:'2'},{label:'未通过',value:'3'}];
        public msgs:any=[];
        public userDetail:any=[];
        private userInfo:any=[];
        private selected:any;
        private search:any={id:null,username:null};
-       
+       private ycheck:any=[];
+       private ncheck:any=[];
+       private ucheck:any=[];
        constructor(private repairerservice:MemberService,private confirmationService: ConfirmationService){
        }
 
       async ngOnInit(){
-           this.Show.tableshow=true;
+           this.Show.tableshow='1';
            this.userList();
        }
       async userList(){
+           this.userInfo.length=0;
+           this.ucheck.length=0;
+           this.ycheck.length=0;
+           this.ncheck.length=0;
            this.userInfo=await this.repairerservice.repairerlist();
            this.userInfo.forEach(e=>{
+               if(e.level==1){//未审核
+                   this.ucheck.push(e);
+               }else if(e.level==2){//通过
+                   this.ycheck.push(e);
+               }else{//未通过
+                   this.ncheck.push(e);
+               }
                if(e.status==1){
                    e._status="空闲";
-               }else{
+               }else if(e.status==2){
                    e._status="忙碌";
                }
            });
@@ -52,12 +65,14 @@ export class RepairerComponent implements OnInit{
        async updatepost(){
             let msg=await this.repairerservice.repairerupdate(this.userDetail);
             if(msg.status==1){
-                this.userInfo=msg.data;
+                //this.userInfo=msg.data;
                 this.Show.cshow=false;
-                let msgs={severity:'info', summary:'提示', detail:'修改成功'};
+                this.Show.tableshow='1';
+                this.userList()
+                let msgs={severity:'info', summary:'提示', detail:'操作成功'};
                 this.msg(msgs);
             }else{
-                let msgs={severity:'error', summary:'提示', detail:'修改失败'};
+                let msgs={severity:'error', summary:'提示', detail:'操作失败'};
                 this.msg(msgs);
             }
        }
@@ -120,5 +135,13 @@ export class RepairerComponent implements OnInit{
          
           let ret=await this.repairerservice.repairersearch(this.search); console.log('1',this.search);
           this.userInfo=ret;
+      }
+      check(repairer,level){
+          repairer.level=level;
+          this.userDetail=repairer;
+          if(level==2){
+              this.userDetail.status=1;
+          }
+          this.updatepost();
       }
 } 

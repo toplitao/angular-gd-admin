@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ExternalModule } from '../../external.module';
 import { StationComponent} from './station/station.component';
-import { RepairerComponent} from './repairer/repairer.component';
+import { DocumentaryComponent} from './documentary/documentary.component';
 import { RouterModule, Routes, RouteReuseStrategy } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
@@ -11,7 +11,7 @@ import { SharedModule } from '../shared/shared.module';
     imports: [ExternalModule,SharedModule],
     declarations: [
        StationComponent,
-       RepairerComponent,
+       DocumentaryComponent,
     ],
     exports: [
         //PurchaseSaleListComponent,
@@ -23,6 +23,6 @@ export class InformationModule {
 }
 export const InformationRoutes :Routes =[
     {path:'station',component:StationComponent},
-    {path:'repairer',component:RepairerComponent},
+    {path:'documentary',component:DocumentaryComponent},
 
 ]

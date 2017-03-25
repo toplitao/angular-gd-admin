@@ -1,0 +1,123 @@
+<div class="ui-g">
+    <div class="ui-g-8">
+        <div class="ui-g-2">
+        <p-autoComplete [(ngModel)]="search.name" size="10" placeholder="会员名" ></p-autoComplete>
+        </div>
+    <div  class="ui-g-2">
+        <p-autoComplete [(ngModel)]="search.id" size="15" placeholder="会员编号" ></p-autoComplete>
+    </div>
+    <div  class="ui-g-2">
+        <button pButton type="button" (click)="onsearch()" label="搜索"></button>
+    </div>
+    </div>
+</div>
+<div class="ui-g">
+    <div  class="ui-g-2">
+        <button pButton type="button" (click)="selectedDel()" label="删除选中"></button>
+    </div>
+    <div  class="ui-g-2">
+        <button pButton type="button" (click)="add()" label="新增"></button>
+    </div>
+    <div class="ui-g-2">
+         <p-selectButton [options]="listType" [(ngModel)]="Show.tableshow" ></p-selectButton>
+    </div>
+   
+</div>
+<div>
+    
+    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input #gb type="text" pInputText size="50" placeholder="任意字段查询">
+    </div>
+    <p-dataTable *ngIf="Show.tableshow" [(selection)]="selected" [value]="userInfo" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+        <p-header>跟单资料</p-header>
+        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+        <p-column field="id" header="会员id"></p-column>
+        <p-column field="oid" header="订单号"></p-column>
+        <p-column field="_status" header="状态"></p-column>
+        <p-column field="charger" header="负责人"></p-column>
+        <p-column field="created_at" header="执行时间"></p-column>
+        <!--<p-column header="操作">
+            <template let-detail="rowData" pTemplate="body">
+            <button type="button" pButton  label="修改"></button>
+            <button type="button" pButton (click)="confirm()"  label="删除"></button>
+            <button type="button" pButton (click)="detail(detail)" label="详细"></button>
+            </template>
+        </p-column>-->
+        <p-column styleClass="col-button">
+        <template pTemplate="header">
+            <button type="button" pButton icon="fa-refresh" (click)="userList()"></button>
+        </template>
+        <template let-member="rowData" pTemplate="body">
+           <button type="button" pButton (click)="update(member)"  label="修改"></button>
+            <button type="button" pButton (click)="del(member)"  label="删除"></button>
+            <button type="button" pButton (click)="detail(member)" label="详细"></button>
+        </template>
+    </p-column>
+    </p-dataTable>
+
+</div>
+<div>
+
+    <p-dialog header="会员详情" [(visible)]="Show.dialog" [responsive]="true" showEffect="fade" [modal]="true" width="400">
+        <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="userDetail" style="font-size:16px;text-align:center;padding:20px">
+            <!--<div class="ui-grid-row">
+                <div class="ui-grid-col-12" style="text-align:center"><img src="showcase/resources/demo/images/car/{{selectedCar.brand}}-big.gif"></div>
+            </div>-->
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-4">id: </div>
+                <div class="ui-grid-col-8">{{userDetail.id}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">name: </div>
+                    <div class="ui-grid-col-8">{{userDetail.name}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">电话: </div>
+                    <div class="ui-grid-col-8">{{userDetail.phone}}</div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">e-mail: </div>
+                    <div class="ui-grid-col-8">{{userDetail.email}}</div>
+            </div>
+        </div>
+
+        
+    </p-dialog>
+</div>
+<div>
+    <p-growl [value]="msgs"></p-growl>
+    <p-confirmDialog width="425"></p-confirmDialog>
+</div>
+<div>
+        <p-dialog header="会员详情" [(visible)]="Show.cshow"  width="400">
+            <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="userDetail" style="font-size:16px;text-align:center;padding:20px">
+                <!--<div class="ui-grid-row">
+                    <div class="ui-grid-col-12" style="text-align:center"><img src="showcase/resources/demo/images/car/{{selectedCar.brand}}-big.gif"></div>
+                </div>-->
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">会员名: </div>
+                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.name" size="10" ></p-autoComplete></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">电话: </div>
+                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.phone" size="10"  ></p-autoComplete></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">邮箱: </div>
+                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.email" size="10"  ></p-autoComplete></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4">地址: </div>
+                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.address" size="10"  ></p-autoComplete></div>
+                </div>
+            </div>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                    <button type="button" pButton icon="fa-close" (click)="Show.cshow=false" label="取消"></button>
+                    <button *ngIf="Show.updateshow" type="button" pButton icon="fa-check" (click)="updatepost()" label="修改"></button>
+                    <button *ngIf="Show.addshow" type="button" pButton icon="fa-check" (click)="add(1)" label="添加"></button>
+                </div>  
+            </p-footer>
+        </p-dialog>
+</div>

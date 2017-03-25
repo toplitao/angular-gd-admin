@@ -67,7 +67,7 @@ export class ListComponent implements OnInit{
        async detail(msg){
           if(msg.status==1){
              let params={id:msg.id};
-             let m=await this.orderservice.readorder(params);
+             let m=await this.orderservice.readorder(params);console.log(m);
              if(m.status==1){
                  this.userInfo=m.data;
              }
@@ -93,7 +93,7 @@ export class ListComponent implements OnInit{
       }
     async distribution(order){
           this.selected=order;
-          let ret=await this.orderservice.repairersearch(); console.log('1',ret);
+          let ret=await this.orderservice.repairersearch();
           if(ret.length>0){
               this.repairer=ret;
               this.repairer.forEach(e=>{
@@ -110,7 +110,8 @@ export class ListComponent implements OnInit{
     async selectrepair(){
          let params={uid:this.selectedRepairer.id,oid:this.selected.id};
          let ret=await this.orderservice.selectedrepairer(params);
-
-         console.log(ret);
+         if(ret.status==1){
+             this.rshow=false;
+         }
     }
 } 
