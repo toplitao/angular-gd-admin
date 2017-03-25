@@ -1,9 +1,9 @@
 <div class="ui-g">
-        <div class="ui-g-1">
-        <p-autoComplete [(ngModel)]="search.id" size="10" placeholder="订单号" ></p-autoComplete>
-        </div>
+    <div class="ui-g-1">
+        <input type="text" pInputText [(ngModel)]="search.id" size="10" placeholder="订单号" >
+    </div>
     <div  class="ui-g-1">
-        <p-autoComplete [(ngModel)]="search.repairer_name" size="15" placeholder="维修员" ></p-autoComplete>
+        <input type="text" pInputText [(ngModel)]="search.repairer_name" size="15" placeholder="维修员" >     
     </div>
     <div  class="ui-g-1">
         <button pButton type="button" (click)="onsearch()" label="搜索"></button>
@@ -80,7 +80,7 @@
                     <div class="ui-g-6 ui-md-3">
                         <button type="text" pButton label="Basic" (click)="op1.toggle($event)"></button>
                         <p-overlayPanel #op1>
-                            <img src="userDetail.picture" alt="Galleria 1" />
+                            <img [src]="userDetail.picture" alt="Galleria 1" />
                         </p-overlayPanel>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
 <div class="ui-g">
         <div class="ui-g-1">
-        <p-autoComplete [(ngModel)]="search.name" size="10" placeholder="会员名" ></p-autoComplete>
+        <input type="text" pInputText [(ngModel)]="search.id" size="10" placeholder="编号" > 
         </div>
     <div  class="ui-g-1">
-        <p-autoComplete [(ngModel)]="search.id" size="15" placeholder="会员编号" ></p-autoComplete>
+        <input type="text" pInputText [(ngModel)]="search.fittings_name" size="15" placeholder="名称" > 
     </div>
     <div  class="ui-g-1">
         <button pButton type="button" (click)="onsearch()" label="搜索"></button>
@@ -16,10 +16,10 @@
     <div  class="ui-g-1">
         <button pButton type="button" (click)="add()" label="新增"></button>
     </div>
-    <div class="ui-g-2">
+    <!--<div class="ui-g-2">
          <p-selectButton [options]="listType" [(ngModel)]="Show.tableshow" ></p-selectButton>
     </div>
-   
+   -->
 </div>
 <div>
     
@@ -89,19 +89,19 @@
                 </div>-->
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">零件名称: </div>
-                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="fittingDetail.fittings_name" size="10" ></p-autoComplete></div>
+                    <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="fittingDetail.fittings_name" size="10" > </div>
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">单价: </div>
-                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="fittingDetail.price" size="10"  ></p-autoComplete></div>
+                    <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="fittingDetail.price" size="10"  > </div>
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">数量: </div>
-                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="fittingDetail.number" size="10"  ></p-autoComplete></div>
+                    <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="fittingDetail.number" size="10"  > </div>
                 </div>
                 <div class="ui-grid-row">
                     <div class="ui-grid-col-4">备注: </div>
-                    <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="fittingDetail.content" size="10"  ></p-autoComplete></div>
+                    <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="fittingDetail.content" size="10"  > </div>
                 </div>
             </div>
             <p-footer>

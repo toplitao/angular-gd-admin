@@ -1,12 +1,9 @@
 <div class="page">
 <div class="ui-g">
-        <div class="ui-g-2">
-        <p-autoComplete [(ngModel)]="search.name" size="10" placeholder="会员名" ></p-autoComplete>
+        <div class="ui-g-1">
+        <input type="text" pInputText [(ngModel)]="search.name" size="10" placeholder="产品名" > 
         </div>
-    <div  class="ui-g-2">
-        <p-autoComplete [(ngModel)]="search.id" size="15" placeholder="会员编号" ></p-autoComplete>
-    </div>
-    <div  class="ui-g-2">
+    <div  class="ui-g-1">
         <button pButton type="button" (click)="onsearch()" label="搜索"></button>
     </div>
 </div>
@@ -17,9 +14,9 @@
     <div  class="ui-g-2">
         <button pButton type="button" (click)="add()" label="新增"></button>
     </div>
-    <div class="ui-g-2">
+    <!--<div class="ui-g-2">
          <p-selectButton [options]="listType" [(ngModel)]="Show.tableshow" ></p-selectButton>
-    </div>
+    </div>-->
 </div>
 <div>
     
@@ -125,7 +122,7 @@
         <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="userDetail" style="font-size:16px;text-align:center;padding:20px">
             <div class="ui-grid-row">
                 <div class="ui-grid-col-4">产品名称: </div>
-                <div class="ui-grid-col-8"><p-autoComplete [(ngModel)]="userDetail.name" size="10" ></p-autoComplete></div>
+                <div class="ui-grid-col-8"><input type="text" pInputText [(ngModel)]="userDetail.name" size="10" > </div>
             </div>
         </div>
         <p-footer>

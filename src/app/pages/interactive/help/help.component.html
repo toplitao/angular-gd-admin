@@ -3,11 +3,11 @@
 <link rel="stylesheet" type="text/css" href="node_modules/quill/dist/quill.snow.css"/>-->
 
 <div class="ui-g">
-        <div class="ui-g-1">
-        <p-autoComplete [(ngModel)]="search.title" size="10" placeholder="标题" ></p-autoComplete>
-        </div>
+    <div class="ui-g-1">
+        <input type="text" pInputText [(ngModel)]="search.title" size="10" placeholder="标题" >
+    </div>
     <div  class="ui-g-1">
-        <p-autoComplete [(ngModel)]="search.id" size="15" placeholder="编号" ></p-autoComplete>
+        <input type="text" pInputText [(ngModel)]="search.id" size="15" placeholder="编号" >
     </div>
     <div  class="ui-g-1">
         <button pButton type="button" (click)="onsearch()" label="搜索"></button>

@@ -121,6 +121,7 @@ export class GoodsComponent implements OnInit{
        async del(data){
             let params={id:data.id};
             let msg=await this.goodsservice.goodsDel(params);
+            this.userInfo=msg;
        }
       msg(msg){
         //    this.confirmationService.confirm({
