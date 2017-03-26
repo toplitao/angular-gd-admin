@@ -98,7 +98,7 @@ export class ListComponent implements OnInit{
       }
     async distribution(order){
           this.selected=order;
-          let ret=await this.orderservice.repairersearch();
+          let ret=await this.orderservice.repairersearch();console.log('1111',ret);
           if(ret.length>0){
               this.repairer=ret;
               this.repairer.forEach(e=>{
@@ -117,6 +117,7 @@ export class ListComponent implements OnInit{
          let ret=await this.orderservice.selectedrepairer(params);
          if(ret.status==1){
              this.rshow=false;
+             this.orderList();
          }
     }
 } 
