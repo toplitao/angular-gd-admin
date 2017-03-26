@@ -119,7 +119,7 @@ export class ListComponent implements OnInit{
             this.fittinglogDetail.forEach(e=>{
                 if(e.type==1){
                     e._type="存";
-                }else if(e.type==-1){
+                }else if(e.type==2){
                     e._type="取";
                 }else{
                     e._type="";
